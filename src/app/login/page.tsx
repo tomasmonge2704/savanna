@@ -188,7 +188,7 @@ export default function LoginPage() {
         }}
       >
         <div style={{ textAlign: 'center', marginBottom: 24 }}>
-        <Image src="/logo-solo-verde.png" alt="Logo" preview={false} width='auto' height={250} style={{ objectFit: 'cover' }} />
+        <Image src="/logo.png" alt="Logo" preview={false} width='auto' height={250} style={{ objectFit: 'cover' }} />
           {currentStep > 0 && (
             <Steps current={currentStep} size="small" style={{ marginBottom: 24 }}>
               <Step title="Email" />

@@ -82,7 +82,7 @@ const HTMLDocument = ({ nombre, qrCodeUrl }: { nombre: string, qrCodeUrl: string
     />
     <div style={htmlStyles.contentContainer}>
       <img
-        src="/logo-verde.png"
+        src="/logo.png"
         style={htmlStyles.logo}
         alt="logo"
       />

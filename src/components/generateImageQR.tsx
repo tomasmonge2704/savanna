@@ -152,7 +152,7 @@ const MyDocument = ({ userData }: { userData: { nombre: string, userId: string }
         />
         <View style={styles.contentContainer}>
           <Image
-            src="/logo-verde.png"
+            src="/logo.png"
             style={styles.logo}
           />
           <Text style={styles.userInfo}>
@@ -177,7 +177,7 @@ const HTMLDocument = ({ userData, qrCodeUrl }: { userData: { nombre: string, use
     />
     <div style={htmlStyles.contentContainer}>
       <img
-        src="/logo-verde.png"
+        src="/logo.png"
         style={htmlStyles.logo}
         alt="logo"
       />

@@ -4,12 +4,12 @@
 // Colores principales
 export const colors = {
   // Colores de marca
-  primary: '#72c260',
+  primary: '#ca8c12',
   primaryLight: '#8fd67e',
   primaryDark: '#5b9c4d',
   
   // Colores semánticos
-  success: '#72c260',
+  success: '#ca8c12',
   info: '#1890ff',
   warning: '#faad14',
   error: '#ff4d4f',

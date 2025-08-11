@@ -29,11 +29,12 @@ export default function Home() {
   return (
     <ProtectedRoute>
         <Image 
-          src="/logo-verde.png" 
+          src="/logo.png" 
           alt="Logo" 
           width={isMobile ? 300 : 500}
           height={isMobile ? 300 : 500} 
           style={{ 
+            display: 'none', // TODO: Remove this
             position: 'absolute', 
             objectFit: 'contain',
             top: '50%', 
