@@ -1,7 +1,7 @@
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;
-  --background-overlay: rgba(0, 0, 0, 0.7); /* Overlay oscuro para el fondo */
+  --background-overlay: rgba(0, 0, 0, 0.4); /* Overlay oscuro para el fondo */
 }
 
 @keyframes darkenBackground {

@@ -33,7 +33,7 @@ export default function Home() {
         marginTop: '15vh',
         gap: '20px',
       }}>
-        <Typography.Title level={2} style={{ textAlign: 'center', marginBottom: '10vh' }}>Bienvenido {session.user?.nombre}</Typography.Title>
+        <Typography.Title level={2} style={{ textAlign: 'center', marginBottom: '10vh' }}>Bienvenido <br />{session.user?.nombre}</Typography.Title>
         <Link href='/profile'>
           <Button type='dashed' style={{ height: '40px', width: '100%'}}>Ver Perfil</Button>
         </Link>

@@ -82,7 +82,7 @@ export default function ProfilePage() {
 
   return (
     <ProtectedRoute>
-      <div style={{ padding: '24px' }}>        
+      <div style={{ padding: '0px' }}>        
         <Row gutter={[24, 24]}>
           <Col xs={24} md={8}>
             <Card variant='outlined' style={{ textAlign: 'center', height: '100%' }}>
@@ -101,7 +101,7 @@ export default function ProfilePage() {
           
           <Col xs={24} md={16}>
             <Card 
-              title={<div><QrcodeOutlined /> Mi Código QR</div>} 
+              title={<div><QrcodeOutlined /> Código QR</div>} 
               variant='outlined'
               style={{ height: '100%' }}
             >

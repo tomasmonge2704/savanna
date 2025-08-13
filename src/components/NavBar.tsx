@@ -9,6 +9,7 @@ import { isMobile } from 'react-device-detect';
 import { useState } from 'react';
 import { useRoleCheck } from '@/hooks/useRoleCheck';
 import { Avatar } from './avatar';
+import { useTheme } from '@/context/ThemeContext';
 
 const { Header } = Layout;
 const { Text } = Typography;
@@ -20,7 +21,7 @@ export const NavBar = () => {
   const { isAdmin } = useRoleCheck();
   const isLoading = status === 'loading';
   const isAuthenticated = status === 'authenticated';
-
+  const { themeMode } = useTheme();
   const handleLogout = async () => {
     try {
       await signOut({ redirect: false });
@@ -87,27 +88,22 @@ export const NavBar = () => {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '0 24px',
-          backgroundColor: 'rgba(0, 0, 0, 0.25)',
-          color: 'white',
+          padding: '0px',
+          background: 'transparent',
+          color: themeMode === 'dark' ? 'white' : 'black',
           position: 'fixed',
           top: '20px',
           left: isMobile ? '24px' : '50%',
           right: isMobile ? '24px' : '50%',
           transform: isMobile ? 'none' : 'translateX(-50%)',
           zIndex: 1000,
-          borderRadius: '12px',
-          boxShadow: '0 8px 32px 0 #64a85517',
-          backdropFilter: 'blur(4px)',
-          WebkitBackdropFilter: 'blur(4px)',
-          border: '1px solid rgba( 255, 255, 255, 0.18 )',
           margin: '0 auto',
           width: !isMobile ? '30%' : '',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Link href="/" style={{ textDecoration: 'none' }}>
-            <Image src="/logo.png" alt="Logo" width={100} height={50} preview={false} style={{ objectFit: 'cover' }} />
+            <Image src="/logo.png" alt="Logo" width={120} height={60} preview={false} style={{ objectFit: 'cover', objectPosition: 'bottom' }} />
           </Link>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
@@ -135,15 +131,15 @@ export const NavBar = () => {
             top: 0,
             left: 0,
             right: 0,
-            backgroundColor: 'rgba(31, 31, 31, 0.8)',
+            backgroundColor: themeMode === 'dark' ? '#1f1f1f' : '#f0f0f0',
             backdropFilter: 'blur(15px)',
             WebkitBackdropFilter: 'blur(15px)', // Para compatibilidad con Safari
             transform: menuOpen ? 'translateY(0)' : 'translateY(-100%)',
             transition: 'transform 0.3s ease-in-out',
             zIndex: 999,
-            paddingTop: '85px', // Para dejar espacio para el NavBar
+            paddingTop: isMobile ? '15px' : '85px', // Para dejar espacio para el NavBar
             boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
-            height: '100vh',
+            height: '100%',
             overflowY: 'auto',
             display: 'flex',
             flexDirection: 'column',
