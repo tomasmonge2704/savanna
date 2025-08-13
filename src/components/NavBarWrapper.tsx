@@ -26,7 +26,7 @@ export function NavBarWrapper({ children }: NavBarWrapperProps) {
       {!isLoginPage && <NavBar />}
       <Content style={{ 
         padding: isLoginPage ? 0 : '24px',
-        marginTop: '80px',
+        marginTop: isLoginPage ? '0px' : '80px',
         width: '100%',
         maxWidth: '100%',
         overflowX: 'hidden'

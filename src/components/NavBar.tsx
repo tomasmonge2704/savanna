@@ -107,7 +107,7 @@ export const NavBar = () => {
       >
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Link href="/" style={{ textDecoration: 'none' }}>
-            <Image src="/logo.png" alt="Logo" width={50} height={50} preview={false} style={{ objectFit: 'contain' }} />
+            <Image src="/logo.png" alt="Logo" width={100} height={50} preview={false} style={{ objectFit: 'cover' }} />
           </Link>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>

@@ -5,9 +5,7 @@ import ProtectedRoute from '@/components/ProtectedRoute';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import Link from 'next/link';
-import { Button } from 'antd';
-import { isMobile } from 'react-device-detect';
-import Image from 'next/image';
+import { Button, Typography } from 'antd';
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -28,34 +26,19 @@ export default function Home() {
   
   return (
     <ProtectedRoute>
-        <Image 
-          src="/logo.png" 
-          alt="Logo" 
-          width={isMobile ? 300 : 500}
-          height={isMobile ? 300 : 500} 
-          style={{ 
-            display: 'none', // TODO: Remove this
-            position: 'absolute', 
-            objectFit: 'contain',
-            top: '50%', 
-            left: '50%', 
-            transform: 'translate(-50%, -50%)'
-          }} 
-        />
       <div style={{
-        display: isMobile ? 'grid' : 'flex',
+        display: 'grid',
         justifyContent: 'center',
-        left: '50%',
-        transform: 'translate(-50%, 0)',
+        alignItems: 'center',
+        marginTop: '15vh',
         gap: '20px',
-        position: 'absolute',
-        bottom: '10vh',
       }}>
+        <Typography.Title level={2} style={{ textAlign: 'center', marginBottom: '10vh' }}>Bienvenido {session.user?.nombre}</Typography.Title>
         <Link href='/profile'>
-          <Button type='dashed' style={{ height: '40px', width: '100%' }}>Ver Perfil</Button>
+          <Button type='dashed' style={{ height: '40px', width: '100%'}}>Ver Perfil</Button>
         </Link>
         <Link href='/info'>
-          <Button type='dashed' style={{ height: '40px', width: '100%' }}>Información del Evento</Button>
+          <Button type='dashed' style={{ height: '40px', width: '100%'}}>Información del Evento</Button>
         </Link>
       </div>
     </ProtectedRoute>
