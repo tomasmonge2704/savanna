@@ -33,11 +33,12 @@ export const NavBar = () => {
   const handleViewProfile = () => {
     router.push(`/profile`);
   };
-
+  const loggedIn = session?.user?.email;
   const navItems = [
     {
       key: 'Home',
       href: '/',
+      secureRoute: true,
     },
     {
       key: 'Info',
@@ -60,7 +61,7 @@ export const NavBar = () => {
       href: '/verificar-qr',
       icon: <QrcodeOutlined style={{ fontSize: '30px', marginRight: '10px' }} />
     },
-  ].filter(item => isAdmin || (!item.adminOnly && !item.loggedIn));
+  ].filter(item => isAdmin || (loggedIn && !item.adminOnly) || item.secureRoute);
   return (
     <>
       <Header

@@ -8,7 +8,7 @@ import { allowedRoutes } from '@/constants/routes';
 import { useRoleCheck } from '@/hooks/useRoleCheck';
 
 export default function ProtectedRoute({ children }: { children: ReactNode }) {
-  const { status } = useSession();
+  const { status, data: session } = useSession();
   const router = useRouter();
   const pathname = usePathname();
   const { isAdmin } = useRoleCheck();
@@ -25,7 +25,7 @@ export default function ProtectedRoute({ children }: { children: ReactNode }) {
   }
 
   const secureRoute = allowedRoutes.includes(pathname);
-  if (!secureRoute && !isAdmin) {
+  if (!secureRoute && !isAdmin && !session) {
     return (
       <Card style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Typography.Title level={2}>Acceso Denegado</Typography.Title>
