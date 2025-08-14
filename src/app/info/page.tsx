@@ -3,6 +3,7 @@
 import { Typography, Layout, Button, Timeline, Card} from 'antd';
 import { EnvironmentOutlined } from '@ant-design/icons';
 import ProtectedRoute from '@/components/ProtectedRoute';
+import { isMobile } from 'react-device-detect';
 
 const { Title } = Typography;
 const { Content } = Layout;
@@ -10,9 +11,10 @@ const { Content } = Layout;
 export default function InfoPage() {
   return (
     <ProtectedRoute>
-    <Content className='home-page-background' style={{ textAlign: 'center', display: 'grid', justifyContent: 'center', gap: '15px' }}>
-    <Title level={1} style={{ fontSize: '30px', color: '#f1d498', fontFamily: 'DTMF', fontWeight: '100', margin: '0' }} >30 DE AGOSTO</Title>
-      <Card variant='borderless'>      
+    <Content className='home-page-background' style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <Card variant='borderless' style={{ width: isMobile ? '85vw' : '25vw', backgroundColor: 'transparent',textAlign: 'center', display: 'grid', justifyContent: 'center', gap: '15px' }}> 
+      <Title level={1} style={{ fontSize: '30px', color: '#f1d498', fontFamily: 'DTMF', fontWeight: '100'}} >30 DE AGOSTO</Title>
+     
       <Button 
           style={{ height: '30px', width: '120px', margin: '0 auto'}} 
           type='dashed' 
@@ -32,11 +34,11 @@ export default function InfoPage() {
         items={[
           {
             label: '12:00',
-            children: <span style={{ fontSize: '20px', color: 'white' }}>TOMAS MONGE</span>,
+            children: <span style={{ fontSize: '20px', color: 'white', fontFamily: 'DTMF' }}>TOMAS MONGE</span>,
           },
           {
             label: '03:30',
-            children: <span style={{ fontSize: '20px', color: 'white' }}>TOBIAS GERARD</span>,
+            children: <span style={{ fontSize: '20px', color: 'white', fontFamily: 'DTMF' }}>TOBIAS GERARD</span>,
           },
           {
             label: '06:00',

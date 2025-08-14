@@ -2,7 +2,7 @@ import { Avatar as AntdAvatar, Typography } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
 const { Text } = Typography;
-export const Avatar = ({ nombre, defaultIcon }: { nombre: string, defaultIcon?: React.ReactNode }) => {
+export const Avatar = ({ nombre, defaultIcon }: { nombre?: string, defaultIcon?: React.ReactNode }) => {
   // Obtener las iniciales del nombre y apellido
   const obtenerIniciales = (nombreCompleto: string) => {
     const partes = nombreCompleto.split(' ');
@@ -17,10 +17,10 @@ export const Avatar = ({ nombre, defaultIcon }: { nombre: string, defaultIcon?: 
     return nombreCompleto.substring(0, 2).toUpperCase();
   };
 
-  const iniciales = obtenerIniciales(nombre);
+  const iniciales = obtenerIniciales(nombre || '');
 
   return (
-    <AntdAvatar size={120}><Text style={{ fontSize: 50 }}>{defaultIcon ? <UserOutlined /> : iniciales}</Text></AntdAvatar>
+    <AntdAvatar size={100} style={{ backgroundColor: 'transparent' }}><Text style={{ fontSize: 50 }}>{defaultIcon ? <UserOutlined /> : iniciales}</Text></AntdAvatar>
   );
 };
 

@@ -71,7 +71,7 @@ export const NavBar = () => {
           alignItems: 'center',
           padding: '0 10px',
           background: menuOpen ? 'rgb(202 140 18 / 70%)' : 'transparent',
-          backdropFilter:'blur(20px)',
+          backdropFilter:'blur(10px)',
           WebkitBackdropFilter:'blur(10px)',
           color: themeMode === 'dark' ? 'white' : 'black',
           position: 'fixed',
@@ -83,7 +83,6 @@ export const NavBar = () => {
           margin: '0 auto',
           width: !isMobile ? '25%' : '',
           boxShadow: '0 4px 30px rgba(0, 0, 0, 0.2)',
-          border: '1px solid rgba(255, 255, 255, 0.3)',
           borderRadius: '15px',
         }}
       >
@@ -169,7 +168,7 @@ export const NavBar = () => {
                   gap: '12px',
                   width: '100%' 
                 }}>
-                  <Avatar nombre={session?.user?.nombre || ''} defaultIcon={!session} />
+                  <Avatar defaultIcon={true} />
                   <div style={{ textAlign: 'center' }}>
                     <Text strong style={{ fontSize: '16px', color: 'white' }}>
                       {session?.user?.nombre || session?.user?.name || session?.user?.email}

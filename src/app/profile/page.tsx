@@ -87,7 +87,7 @@ export default function ProfilePage() {
           <Col xs={24} md={8}>
             <Card variant='outlined' style={{ textAlign: 'center', height: '100%' }}>
               <Avatar 
-                nombre={profileData?.nombre || ''}
+                defaultIcon={true}
               />
               <Title level={3}>{profileData?.nombre} {profileData?.apellido}</Title>
               <Text type="secondary" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
