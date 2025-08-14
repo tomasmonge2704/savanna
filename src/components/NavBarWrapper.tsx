@@ -21,7 +21,6 @@ export function NavBarWrapper({ children }: NavBarWrapperProps) {
     <Layout style={{ 
       minHeight: '100vh', 
       background: themeMode === 'dark' ? 'rgb(0 0 0 / 20%)' : '#f0f0f0',
-      backdropFilter: 'blur(10px)'
     }}>
       {!isLoginPage && <NavBar />}
       <Content style={{ 

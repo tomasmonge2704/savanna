@@ -1,30 +1,27 @@
 'use client';
 
-import { Typography, Layout, Button, Timeline} from 'antd';
+import { Typography, Layout, Button, Timeline, Card} from 'antd';
 import { EnvironmentOutlined } from '@ant-design/icons';
-
+import ProtectedRoute from '@/components/ProtectedRoute';
 
 const { Title } = Typography;
 const { Content } = Layout;
 
 export default function InfoPage() {
   return (
-    <Content className='home-page-background' style={{ marginTop: '7vh', textAlign: 'center', display: 'grid', gap: '15px', justifyContent: 'center' }}>
-      <div style={{ minWidth: '50vw' }}>
-      <Title level={1} style={{ fontSize: '50px', color: '#ca8c12', marginBottom: '5px' }} >
-      30/08
-      </Title>
-        <Button 
-          style={{ height: '30px', width: '100%'}} 
+    <ProtectedRoute>
+    <Content className='home-page-background' style={{ textAlign: 'center', display: 'grid', justifyContent: 'center', gap: '15px' }}>
+    <Title level={1} style={{ fontSize: '30px', color: '#f1d498', fontFamily: 'DTMF', fontWeight: '100', margin: '0' }} >30 DE AGOSTO</Title>
+      <Card variant='borderless'>      
+      <Button 
+          style={{ height: '30px', width: '120px', margin: '0 auto'}} 
           type='dashed' 
           icon={<EnvironmentOutlined />}
           onClick={() => window.open('https://maps.app.goo.gl/ECJrwr66WAXWuwedA', '_blank')}
         >
           Ubicación
         </Button>
-      </div>
-      
-      <Title level={1} style={{ marginTop: '50px' }} >
+      <Title level={1} style={{ marginTop: '50px', fontFamily: 'DTMF', fontWeight: '100', color: '#f1d498' }} >
         LINE UP
       </Title>
       <Timeline
@@ -47,7 +44,8 @@ export default function InfoPage() {
           },
         ]}
       />
+      </Card>
     </Content>
-
+    </ProtectedRoute>
   );
 }

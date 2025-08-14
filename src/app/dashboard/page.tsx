@@ -569,8 +569,8 @@ export default function DashboardPage() {
   };
 
   return (
-    <Content style={{ padding: '16px' }}>
-      <Tabs defaultActiveKey="general" size="large">
+    <Content>
+      <Tabs defaultActiveKey="general" size="large" type='card' style={{ padding: '16px' }}>
         <TabPane tab="General" key="general">
           {renderGeneralContent()}
         </TabPane>

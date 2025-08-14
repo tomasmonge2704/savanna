@@ -1,8 +1,8 @@
 'use client';
 
-import { Layout, Button, Typography, Space, Spin, Menu, Card, Image } from 'antd';
+import { Layout, Button, Typography, Space, Card, Image } from 'antd';
 import { signOut, useSession } from 'next-auth/react';
-import { LoadingOutlined, MenuOutlined, QrcodeOutlined, CloseOutlined } from '@ant-design/icons';
+import { MenuOutlined, QrcodeOutlined, CloseOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { isMobile } from 'react-device-detect';
@@ -11,16 +11,15 @@ import { useRoleCheck } from '@/hooks/useRoleCheck';
 import { Avatar } from './avatar';
 import { useTheme } from '@/context/ThemeContext';
 
+
 const { Header } = Layout;
 const { Text } = Typography;
 
 export const NavBar = () => {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
-  const { isAdmin } = useRoleCheck();
-  const isLoading = status === 'loading';
-  const isAuthenticated = status === 'authenticated';
+  const { isAdmin } = useRoleCheck(); 
   const { themeMode } = useTheme();
   const handleLogout = async () => {
     try {
@@ -37,50 +36,31 @@ export const NavBar = () => {
 
   const navItems = [
     {
-      key: 'home',
-      label: (
-        <Link href="/" style={{ color: 'inherit' }}>
-          Inicio
-        </Link>
-      ),
+      key: 'Home',
+      href: '/',
     },
     {
-      key: 'info',
-      label: (
-        <Link href="/info" style={{ color: 'inherit' }}>
-          Información
-        </Link>
-      ),
+      key: 'Info',
+      href: '/info',
+      loggedIn: true,
     },
     {
       adminOnly: true,
-      key: 'users',
-      label: (
-        <Link href="/users" style={{ color: 'inherit' }}>
-          Usuarios
-        </Link>
-      ),
+      key: 'Users',
+      href: '/users',
     },
     {
       adminOnly: true,
-      key: 'dashboard',
-      label: (
-        <Link href="/dashboard" style={{ color: 'inherit' }}>
-          Dashboard
-        </Link>
-      ),
+      key: 'Dashboard',
+      href: '/dashboard',
     },
     {
       adminOnly: true,
-      key: 'verificar-qr',
-      label: (
-        <Link href="/verificar-qr" style={{ color: 'inherit' }}>
-          Verificador
-        </Link>
-      ),
-      icon: <QrcodeOutlined style={{ fontSize: '32px' }} />
+      key: 'Verificar Qr',
+      href: '/verificar-qr',
+      icon: <QrcodeOutlined style={{ fontSize: '30px', marginRight: '10px' }} />
     },
-  ].filter(item => isAdmin || !item.adminOnly);
+  ].filter(item => isAdmin || (!item.adminOnly && !item.loggedIn));
   return (
     <>
       <Header
@@ -88,8 +68,10 @@ export const NavBar = () => {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '0px',
-          background: 'transparent',
+          padding: '0 10px',
+          background: menuOpen ? 'rgb(202 140 18 / 70%)' : 'transparent',
+          backdropFilter:'blur(20px)',
+          WebkitBackdropFilter:'blur(10px)',
           color: themeMode === 'dark' ? 'white' : 'black',
           position: 'fixed',
           top: '20px',
@@ -98,40 +80,42 @@ export const NavBar = () => {
           transform: isMobile ? 'none' : 'translateX(-50%)',
           zIndex: 1000,
           margin: '0 auto',
-          width: !isMobile ? '30%' : '',
+          width: !isMobile ? '25%' : '',
+          boxShadow: '0 4px 30px rgba(0, 0, 0, 0.2)',
+          border: '1px solid rgba(255, 255, 255, 0.3)',
+          borderRadius: '15px',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Link href="/" style={{ textDecoration: 'none' }}>
-            <Image src="/logo.png" alt="Logo" width={120} height={60} preview={false} style={{ objectFit: 'cover', objectPosition: 'bottom' }} />
+            <Image src="/logo.png" alt="Logo" width={200} height={100} preview={false} style={{ objectFit: 'cover'}} />
           </Link>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          {isAuthenticated && (
+          
             <Button
               type="text"
+              variant='link'
               icon={menuOpen 
                 ? <CloseOutlined style={{ fontSize: '20px', color: 'white' }} />
                 : <MenuOutlined style={{ fontSize: '20px', color: 'white' }} />
               }
               onClick={() => setMenuOpen(!menuOpen)}
             />
-          )}
           
-          {isLoading ? (
-            <Spin indicator={<LoadingOutlined style={{ fontSize: 24, color: 'white' }} spin />} />
-          ) : null}
         </div>
       </Header>
       
-      {isAuthenticated && (
+      
         <div 
           style={{
             position: 'fixed',
             top: 0,
             left: 0,
             right: 0,
-            backgroundColor: themeMode === 'dark' ? '#1f1f1f' : '#f0f0f0',
+            background: 'url(/tiger.svg)',
+            backgroundSize: 'cover',
+            backgroundColor: '#ca8c12',
             backdropFilter: 'blur(15px)',
             WebkitBackdropFilter: 'blur(15px)', // Para compatibilidad con Safari
             transform: menuOpen ? 'translateY(0)' : 'translateY(-100%)',
@@ -145,19 +129,25 @@ export const NavBar = () => {
             flexDirection: 'column',
           }}
         >
-          <div style={{ margin: '0 auto', padding: '20px', marginTop: '80px' }}>
-            <Menu
-              mode="vertical"
-              style={{ 
-                fontSize: '40px', 
-                backgroundColor: 'transparent',
-                border: 'none',
-                color: 'white',
-                textAlign: 'center',
-              }}
-              items={navItems}
-              onClick={() => setMenuOpen(false)}
-            />
+          <div style={{ margin: '0 auto', padding: '20px', marginTop: '80px', display: 'grid', gap: '5px', textAlign: 'center' }}>
+            {navItems.map((item) => (
+              <Link href={item.href} key={item.key} onClick={() => setMenuOpen(false)}>
+                <Typography.Title 
+                  level={2} 
+                  style={{ 
+                    fontSize: '35px', 
+                    fontFamily: 'DTMF', 
+                    color: 'white', 
+                    fontWeight: '100',
+                    margin: 0,
+                    padding: 0
+                  }} 
+                >
+                  {item.icon ? item.icon : null}
+                  {item.key}
+                </Typography.Title>
+              </Link>
+            ))}
           </div>
           
           <div style={{ 
@@ -170,7 +160,7 @@ export const NavBar = () => {
             justifyContent: 'center' 
           }}>
             <Space direction="vertical" style={{ width: '100%' }} size="middle">
-              <Card hoverable variant='borderless' onClick={handleViewProfile}>
+              <Card hoverable variant='borderless' style={{ backgroundColor: 'transparent', backdropFilter: 'blur(10px)' }} onClick={handleViewProfile}>
                 <div style={{ 
                   display: 'flex', 
                   flexDirection: 'column',
@@ -178,7 +168,7 @@ export const NavBar = () => {
                   gap: '12px',
                   width: '100%' 
                 }}>
-                  <Avatar nombre={session?.user?.nombre || ''} />
+                  <Avatar nombre={session?.user?.nombre || ''} defaultIcon={!session} />
                   <div style={{ textAlign: 'center' }}>
                     <Text strong style={{ fontSize: '16px', color: 'white' }}>
                       {session?.user?.nombre || session?.user?.name || session?.user?.email}
@@ -188,18 +178,18 @@ export const NavBar = () => {
                   </div>
                 </div>
               </Card>
-              <Button 
+              {session ? <Button 
                 type="primary" 
                 danger
                 block
                 onClick={handleLogout}
               >
                 Cerrar Sesión
-              </Button>
-            </Space>
-          </div>
+              </Button> : <Button type="primary" onClick={() => router.push('/login')} style={{ margin: '0 auto', width: '100%' }}>Iniciar Sesión</Button>
+            }
+          </Space>
         </div>
-      )}
+        </div>
     </>
   );
 }; 

@@ -6,6 +6,7 @@ interface EstadisticasData {
   grupoStats: { grupo: string; count: number }[];
   creationDates: { id: number | string; created_at: string }[];
   edadPromedio: number;
+  totalUsuarios: number;
 }
 
 interface FinanceData {
@@ -94,7 +95,7 @@ export const useDashboardState = () => {
   const calculations = useMemo<DashboardCalculations>(() => {
     const usuariosHombres = state.estadisticas?.generoStats?.Hombre || 0;
     const usuariosMujeres = state.estadisticas?.generoStats?.Mujer || 0;
-    const totalUsuarios = usuariosHombres + usuariosMujeres;
+    const totalUsuarios = state.estadisticas?.totalUsuarios || 0;
     const porcentajeHombres = totalUsuarios > 0 ? (usuariosHombres / totalUsuarios) * 100 : 0;
     const porcentajeMujeres = totalUsuarios > 0 ? (usuariosMujeres / totalUsuarios) * 100 : 0;
     const diferenciaPorcentaje = Math.abs(porcentajeHombres - porcentajeMujeres);

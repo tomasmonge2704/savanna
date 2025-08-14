@@ -12,31 +12,33 @@ export default function ProtectedRoute({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const { isAdmin } = useRoleCheck();
+
   useEffect(() => {
-    if (status === 'unauthenticated') {
+    if (status === 'unauthenticated' && pathname !== '/') {
       router.push('/login');
     }
-  }, [status, router]);
+  }, [status, router, pathname]);
   
+  // Mostrar loading mientras se verifica la autenticación
   if (status === 'loading') {
     return <div>Cargando...</div>;
   }
 
   const secureRoute = allowedRoutes.includes(pathname);
-  if (secureRoute || isAdmin) {
-    return <>{children}</>;
+  if (!secureRoute && !isAdmin) {
+    return (
+      <Card style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Typography.Title level={2}>Acceso Denegado</Typography.Title>
+        <Typography.Paragraph>
+          No tienes permisos para acceder a esta página.
+        </Typography.Paragraph>
+        <Button onClick={() => router.push('/login')} type="primary" 
+                  size="large" 
+                  block>Iniciar Sesión</Button>
+      </Card>
+    );
   }
 
-    return <Card style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <Typography.Title level={2}>Acceso Denegado</Typography.Title>
-      <Typography.Paragraph>
-        No tienes permisos para acceder a esta página.
-      </Typography.Paragraph>
-      <Button onClick={() => router.push('/login')} type="primary" 
-                size="large" 
-                block >Iniciar Sesión</Button>
-    </Card>;
-  
-  
-  
+  // Solo renderizar children si pasa todas las verificaciones
+  return <>{children}</>;
 } 

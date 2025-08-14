@@ -5,7 +5,6 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 import { NavBarWrapper } from "@/components/NavBarWrapper";
 export const metadata: Metadata = {
   title: "SAVANNA",
-  description: "???",
 };
 
 export default function RootLayout({
