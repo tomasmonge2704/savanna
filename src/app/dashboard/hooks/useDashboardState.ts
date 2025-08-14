@@ -66,12 +66,12 @@ interface DashboardCalculations {
 }
 
 const botellasInicial = [
-  {nombre: 'Vodka', precio: 30000, porcentajeConsumo: 0.35, cantidad: 0, precioTotal: 0},
-  {nombre: 'Gin', precio: 28500, porcentajeConsumo: 0.40, cantidad: 0, precioTotal: 0},
-  {nombre: 'Fernet', precio: 34500, porcentajeConsumo: 0.25, cantidad: 0, precioTotal: 0},
+  {nombre: 'Vodka', precio: 12000, porcentajeConsumo: 0.35, cantidad: 0, precioTotal: 0},
+  {nombre: 'Gin', precio: 14000, porcentajeConsumo: 0.40, cantidad: 0, precioTotal: 0},
+  {nombre: 'Fernet', precio: 14000, porcentajeConsumo: 0.25, cantidad: 0, precioTotal: 0},
 ];
 
-const totalAlquiler = 3500000;
+const totalAlquiler = 1400000;
 const tragosPersona = 4;
 const tragosPorBotella = 15;
 
