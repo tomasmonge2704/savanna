@@ -18,7 +18,7 @@
     transform: translateY(-200%);
   }
   to {
-    background: url('/3.png');
+    background: url('/2.png');
     background-size: cover;
     backdrop-filter: blur(10px);
     background-position: center;
