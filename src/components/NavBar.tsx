@@ -52,6 +52,11 @@ export const NavBar = () => {
     },
     {
       adminOnly: true,
+      key: 'Pagos',
+      href: '/pagos',
+    },
+    {
+      adminOnly: true,
       key: 'Dashboard',
       href: '/dashboard',
     },

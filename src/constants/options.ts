@@ -51,3 +51,53 @@ export const getGrupoColor = (grupo: string): string => {
     default: return 'default';
   }
 };
+
+/**
+ * Estados de pago
+ */
+export const ESTADO_PAGO_PENDIENTE = 'pendiente';
+export const ESTADO_PAGO_COMPLETADO = 'completado';
+export const ESTADO_PAGO_FALLIDO = 'fallido';
+export const ESTADO_PAGO_CANCELADO = 'cancelado';
+export const ESTADO_PAGO_REEMBOLSADO = 'reembolsado';
+
+/**
+ * Opciones para los estados de pago
+ */
+export const OPCIONES_ESTADO_PAGO = [
+  { value: ESTADO_PAGO_PENDIENTE, label: 'Pendiente', color: 'warning' },
+  { value: ESTADO_PAGO_COMPLETADO, label: 'Completado', color: 'success' },
+  { value: ESTADO_PAGO_FALLIDO, label: 'Fallido', color: 'error' },
+  { value: ESTADO_PAGO_CANCELADO, label: 'Cancelado', color: 'default' },
+  { value: ESTADO_PAGO_REEMBOLSADO, label: 'Reembolsado', color: 'purple' },
+];
+
+/**
+ * Tipos de pago
+ */
+export const OPCIONES_TIPO_PAGO = [
+  { value: 'tarjeta_credito', label: 'Tarjeta de Crédito', icon: 'credit-card' },
+  { value: 'tarjeta_debito', label: 'Tarjeta de Débito', icon: 'credit-card' },
+  { value: 'transferencia', label: 'Transferencia Bancaria', icon: 'bank' },
+  { value: 'efectivo', label: 'Efectivo', icon: 'dollar' },
+  { value: 'paypal', label: 'PayPal', icon: 'paypal' },
+  { value: 'stripe', label: 'Stripe', icon: 'stripe' },
+  { value: 'mercadopago', label: 'MercadoPago', icon: 'money-collect' },
+  { value: 'otro', label: 'Otro', icon: 'wallet' },
+];
+
+/**
+ * Función para obtener el color de un estado de pago
+ */
+export const getEstadoPagoColor = (estado: string): string => {
+  const opcion = OPCIONES_ESTADO_PAGO.find(opt => opt.value === estado);
+  return opcion ? opcion.color : 'default';
+};
+
+/**
+ * Función para obtener el label de un tipo de pago
+ */
+export const getTipoPagoLabel = (tipo: string): string => {
+  const opcion = OPCIONES_TIPO_PAGO.find(opt => opt.value === tipo);
+  return opcion ? opcion.label : tipo;
+};

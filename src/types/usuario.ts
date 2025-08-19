@@ -13,4 +13,4 @@ export type Usuario = {
   monto_pago?: number;
   paid_at?: string;
   qr_scanned_at?: string;
-}; 
+};

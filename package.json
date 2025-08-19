@@ -17,6 +17,7 @@
     "@yudiel/react-qr-scanner": "^2.2.1",
     "antd": "^5.24.4",
     "bcryptjs": "^3.0.2",
+    "dayjs": "^1.11.13",
     "html2canvas": "^1.4.1",
     "html5-qrcode": "^2.3.8",
     "jsonwebtoken": "^9.0.2",
